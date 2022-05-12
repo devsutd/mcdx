@@ -1,0 +1,7 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+.vs/
+mcdx-extension/todo list.txt
+mcdx-extension/todov2.txt

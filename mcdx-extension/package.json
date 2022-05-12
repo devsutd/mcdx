@@ -1,0 +1,126 @@
+{
+	"publisher": "DevsUnited",
+	"name": "mcdx-extension",
+	"displayName": "mcdx-extension",
+	"description": "",
+	"version": "0.0.3",
+	"engines": {
+		"vscode": "^1.46.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:mcdx-extension.Connect"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "mcdx-extension.DownloadAsset",
+				"title": "MCDX - Retrieve from Business Unit"
+			},
+			{
+				"command": "mcdx-extension.PushAsset",
+				"title": "MCDX - Push to Business Unit"
+			},
+			{
+				"command": "mcdx-extension.DownloadAllFolders",
+				"title": "MCDX - Retrieve from Business Units"
+			},
+			{
+				"command": "mcdx-extension.Connect",
+				"title": "MCDX - Connect"
+			},
+			{
+				"command": "mcdx-extension.CreateTableOnSQL",
+				"title": "MCDX - Create table on SQL"
+			},
+			{
+				"command": "mcdx-extension.DownloadDEData",
+				"title": "MCDX - Download DataExtension Data"
+			},
+			{
+				"command": "mcdx-extension.NewQueryActivity",
+				"title": "MCDX - New Query Activity"
+			},
+			{
+				"command": "mcdx-extension.PushQueryActivity",
+				"title": "MCDX - Push Query Activity"
+			},
+			{
+				"command": "mcdx-extension.DownloadDataViews",
+				"title": "MCDX - Download Data Views"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "resourceFilename == 'manifest.json' && ActivationContext == success",
+					"command": "mcdx-extension.DownloadAllFolders",
+					"group": "group"
+				},
+				{
+					"when": "resourceFilename =~ /.*(\\.json)/i && resourceFilename != 'manifest.json' && ActivationContext == success",
+					"command": "mcdx-extension.DownloadAsset",
+					"group": "group"
+				},
+				{
+					"when": "resourceFilename =~ /.*(\\.json)/i && resourceFilename != 'manifest.json' && ActivationContext == success",
+					"command": "mcdx-extension.PushAsset",
+					"group": "group"
+				},
+				{
+					"when": "resourceFilename =~ /.*(\\.sql)/i && resourceDirname =~ /.*Email Studio.*/i && resourceDirname =~ /.*Data Extensions.*/i && ActivationContext == success && ManifestConnectionString == true",
+					"command": "mcdx-extension.CreateTableOnSQL",
+					"group": "group"
+				},
+				{
+					"when": "resourceFilename =~ /.*(\\.sql)/i && resourceDirname =~ /.*Email Studio.*/i && resourceDirname =~ /.*Data Extensions.*/i && ActivationContext == success && ManifestConnectionString == true",
+					"command": "mcdx-extension.DownloadDEData",
+					"group": "group"
+				},
+				{
+					"when": "resourceDirname =~ /.*Automation Studio.*/i && ActivationContext == success",
+					"command": "mcdx-extension.NewQueryActivity",
+					"group": "group"
+				},
+				{
+					"when": "resourceDirname =~ /.*Automation Studio.*/i && resourceFilename =~ /.*(\\.sql)/i && ActivationContext == success",
+					"command": "mcdx-extension.PushQueryActivity",
+					"group": "group"
+				},
+				{
+					"when": "ActivationContext == success && ManifestConnectionString == true && resourceFilename != 'manifest.json'",
+					"command": "mcdx-extension.DownloadDataViews",
+					"group": "group"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/jquery": "^3.5.5",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.46.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"fetch": "^1.1.0",
+		"lodash.merge": "^4.6.2",
+		"mssql": "^6.3.0",
+		"node-fetch": "^2.6.1",
+		"soap": "^0.34.0",
+		"xml2js": "^0.4.23"
+	}
+}
